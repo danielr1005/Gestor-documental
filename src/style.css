@@ -1,0 +1,522 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f6f6f6;
+  color: #202020;
+  overflow-x: hidden;
+}
+
+.register-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-top-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #087dcc;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.register-top-link:hover {
+  text-decoration: underline;
+}
+.register-container {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 650px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  border: 2px solid #148be0;
+  background-color: #f1f1f1;
+}
+
+.register-welcome,
+.register-form-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-welcome {
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px;
+  text-align: center;
+}
+
+.welcome-title h1,
+.welcome-title h2 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #111111;
+}
+
+.welcome-title h1 {
+  font-size: clamp(30px, 3vw, 45px);
+}
+
+.welcome-title h2 {
+  font-size: clamp(28px, 3vw, 42px);
+}
+
+.enruta-logo-img {
+  display: block;
+  width: 180px;
+  max-width: 70%;
+  height: auto;
+  object-fit: contain;
+  margin: 10px auto;
+}
+
+.welcome-mascot {
+  width: min(320px, 65%);
+  max-height: 300px;
+  height: auto;
+  object-fit: contain;
+}
+
+.register-form-section {
+  padding: 35px 25px;
+}
+
+.register-form {
+  width: 100%;
+  max-width: 280px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 11px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 30px;
+  padding: 5px 9px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-size: 11px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+    color: black;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #16b84e;
+  box-shadow: 0 0 0 3px rgba(22, 184, 78, 0.12);
+}
+
+.register-button {
+  display: block;
+  width: 160px;
+  height: 34px;
+  margin: 20px auto 13px;
+  border: none;
+  border-radius: 6px;
+  background-color: #16d454;
+  color: #101010;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.register-button:hover {
+  background-color: #12bd49;
+  transform: translateY(-1px);
+}
+
+.register-button:active {
+  transform: translateY(0);
+}
+
+.login-message {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.login-message a {
+  color: #111111;
+  font-weight: 700;
+}
+
+.form-error {
+  margin: 6px 0 0;
+  color: #c62828;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Tabletas */
+@media (max-width: 900px) {
+  .register-container {
+    grid-template-columns: 45% 55%;
+  }
+
+  .register-welcome {
+    padding: 30px 20px;
+  }
+
+  .welcome-mascot {
+    width: 65%;
+  }
+}
+
+/* Celulares */
+@media (max-width: 680px) {
+  .register-page {
+    min-height: auto;
+    padding: 8px 10px 25px;
+    justify-content: flex-start;
+  }
+
+  .register-container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .register-welcome {
+    padding: 25px 20px 10px;
+    gap: 15px;
+  }
+
+  .welcome-title h1 {
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  .welcome-title h2 {
+    font-size: 21px;
+    line-height: 1.1;
+  }
+
+  .enruta-logo-img {
+    width: 130px;
+    max-width: 60%;
+    margin: 18px auto;
+  }
+
+  .welcome-mascot {
+    width: 100px;
+    max-height: 120px;
+  }
+
+  .register-form-section {
+    padding: 15px 32px 28px;
+  }
+
+  .register-form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .form-group label {
+    margin-bottom: 5px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    height: 38px;
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+
+  .register-button {
+    width: 100%;
+    height: 40px;
+    margin: 13px auto 12px;
+    font-size: 11px;
+  }
+
+  .login-message {
+    font-size: 10px;
+  }
+}
+/* =========================
+   VISTA DE INICIO DE SESIÓN
+========================= */
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 40px 30px;
+  background-color: #f7f7f7;
+}
+
+.login-top-link {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #a4a4a4;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.login-top-link:hover {
+  color: #555555;
+  text-decoration: underline;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 1230px;
+  min-height: 480px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+
+  background-color: #f1f1f1;
+}
+
+.login-welcome,
+.login-form-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-welcome {
+  flex-direction: column;
+  gap: 50px;
+  padding: 40px;
+  text-align: center;
+}
+
+.login-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-logo {
+  display: block;
+  width: 150px;
+  max-width: 70%;
+  height: auto;
+  margin-bottom: 8px;
+  object-fit: contain;
+}
+
+.login-brand h1 {
+  margin: 0;
+  color: #202020;
+  font-size: clamp(32px, 3vw, 43px);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.login-mascot {
+  width: min(240px, 60%);
+  max-height: 260px;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-form-section {
+  padding: 40px 30px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.login-form-group label {
+  margin-bottom: 7px;
+  color: #222222;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.login-form-group input {
+  width: 100%;
+  height: 38px;
+  padding: 8px 10px;
+
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #111111;
+
+  font-size: 12px;
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-form-group input:focus {
+  border-color: #16b84e;
+  box-shadow: 0 0 0 3px rgba(22, 184, 78, 0.12);
+}
+
+.login-button {
+  display: block;
+  width: 180px;
+  height: 42px;
+  margin: 5px auto 15px;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #16d454;
+  color: #111111;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #12bd49;
+  transform: translateY(-1px);
+}
+
+.login-register-message {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+
+  color: #111111;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.login-register-message a {
+  margin-top: 2px;
+  color: #111111;
+  text-decoration: underline;
+}
+
+/* Tabletas */
+@media (max-width: 900px) {
+  .login-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .login-welcome {
+    padding: 30px 20px;
+  }
+
+  .login-brand h1 {
+    font-size: 32px;
+  }
+
+  .login-mascot {
+    width: 190px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 680px) {
+  .login-page {
+    min-height: auto;
+    padding: 10px;
+  }
+
+  .login-container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .login-welcome {
+    gap: 20px;
+    padding: 30px 20px 15px;
+  }
+
+  .login-logo {
+    width: 125px;
+  }
+
+  .login-brand h1 {
+    font-size: 27px;
+  }
+
+  .login-mascot {
+    width: 135px;
+    max-height: 160px;
+  }
+
+  .login-form-section {
+    padding: 20px 30px 35px;
+  }
+
+  .login-form {
+    max-width: 100%;
+  }
+
+  .login-form-group {
+    margin-bottom: 16px;
+  }
+
+  .login-form-group label {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .login-form-group input {
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .login-button {
+    width: 100%;
+    height: 42px;
+  }
+}
