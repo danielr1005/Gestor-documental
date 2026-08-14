@@ -4,6 +4,8 @@ import Register from "./Register";
 import Home from "./Home";
 import Documents from "./Documents";
 import SearchDocuments from "./SearchDocument";
+import DocumentDetail from "./DocumentDetail";
+
 
 function App() {
   return (
@@ -37,6 +39,12 @@ function App() {
       <Route
         path="/busqueda"
         element={<SearchDocuments />}
+      />
+
+      
+      <Route
+        path="/documentos/:id"
+        element={<DocumentDetail />}
       />
 
     </Routes>
