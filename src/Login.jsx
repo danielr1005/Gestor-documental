@@ -72,11 +72,17 @@ export default function Login() {
       setLoading(false);
     }
   };
+
+  const bloquearPegado = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#f7f7f7] px-4 py-6">
       <section className="grid min-h-[560px] w-full max-w-6xl grid-cols-1 bg-[#f1f1f1] md:grid-cols-2">
 
-        <div className="flex flex-col items-center justify-center gap-10 px-6 py-10 text-center">
+        {/* LADO IZQUIERDO */}
+        <div className="flex flex-col items-center justify-center gap-8 px-6 py-10 text-center">
           <div className="flex flex-col items-center">
             <img
               src="/assets/Logo-Enruta.png"
@@ -85,7 +91,7 @@ export default function Login() {
             />
 
             <h1 className="text-3xl font-bold text-[#202020] md:text-5xl">
-              Gestor documental
+              Gestor Documental
             </h1>
           </div>
 
@@ -96,11 +102,14 @@ export default function Login() {
           />
         </div>
 
+        {/* LADO DERECHO */}
         <div className="flex items-center justify-center px-6 py-10">
           <form
             className="w-full max-w-sm"
             onSubmit={handleSubmit}
           >
+
+            {/* CORREO */}
             <div className="mb-7 flex flex-col">
               <label
                 htmlFor="correo"
@@ -113,16 +122,18 @@ export default function Login() {
                 id="correo"
                 name="correo"
                 type="email"
-                disabled={loading}
                 placeholder="ej: pepito.perez@enruta.gov.co"
                 value={formData.correo}
                 onChange={handleChange}
+                onPaste={bloquearPegado}
+                disabled={loading}
                 required
                 autoComplete="email"
-                className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-black outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-black outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200 disabled:cursor-not-allowed disabled:bg-gray-100"
               />
             </div>
 
+            {/* CONTRASEÑA */}
             <div className="mb-5 flex flex-col">
               <label
                 htmlFor="password"
@@ -135,16 +146,18 @@ export default function Login() {
                 id="password"
                 name="password"
                 type="password"
-                disabled={loading}
                 placeholder="Digita la contraseña"
                 value={formData.password}
                 onChange={handleChange}
+                onPaste={bloquearPegado}
+                disabled={loading}
                 required
                 autoComplete="current-password"
-                className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-black outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-black outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-200 disabled:cursor-not-allowed disabled:bg-gray-100"
               />
             </div>
 
+            {/* MENSAJE DE ERROR */}
             {error && (
               <div
                 role="alert"
@@ -154,14 +167,15 @@ export default function Login() {
               </div>
             )}
 
+            {/* BOTÓN */}
             <button
-            type="submit"
-            disabled={loading}
-            className="mx-auto block h-12 w-full rounded-md bg-green-500 font-bold text-black transition hover:bg-green-600 disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-60"
+              type="submit"
+              disabled={loading}
+              className="mx-auto block h-12 w-full rounded-md bg-green-500 font-bold text-black transition hover:bg-green-600 disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-60"
             >
-            {loading
-            ? "Iniciando sesión..."
-             : "Iniciar sesión"}
+              {loading
+                ? "Iniciando sesión..."
+                : "Iniciar sesión"}
             </button>
 
             <p className="mt-3 flex flex-col text-center text-sm font-bold text-black">
