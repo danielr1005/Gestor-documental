@@ -70,7 +70,7 @@ export default function Register() {
           <img
             src="/assets/mascota.png"
             alt="Mascota Enruta"
-            className="h-auto w-36 object-contain md:w-56"
+            className="h-auto w-56 object-contain md:w-80 lg:w-96"
           />
         </div>
 
