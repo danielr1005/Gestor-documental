@@ -42,7 +42,7 @@ export default function Home() {
             <Users size={23} />
 
             <h2 className="text-lg font-semibold text-[#303030]">
-              Total usuarios
+              Total usuarios MENSAJE PRUEBA
             </h2>
           </div>
 
