@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import DashboardLayout from "./components/DashboardLayout";
+import Dashboardlayout from "./components/Dashboardlayout";
 import {
   ArrowLeft,
   Download,
@@ -46,7 +46,7 @@ export default function DocumentDetail() {
 
   if (!document) {
     return (
-      <DashboardLayout activePage="documentos">
+      <Dashboardlayout activePage="documentos">
         <div className="flex min-h-96 flex-col items-center justify-center gap-5">
           <h1 className="text-2xl font-bold">
             Documento no encontrado
@@ -61,12 +61,12 @@ export default function DocumentDetail() {
             Volver a documentos
           </button>
         </div>
-      </DashboardLayout>
+      </Dashboardlayout>
     );
   }
 
   return (
-    <DashboardLayout activePage="documentos">
+    <Dashboardlayout activePage="documentos">
       {/* Botón atrás */}
       <div className="mb-6 flex justify-end">
         <button
@@ -127,6 +127,6 @@ export default function DocumentDetail() {
           </div>
         </div>
       </section>
-    </DashboardLayout>
+    </Dashboardlayout>
   );
 }

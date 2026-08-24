@@ -54,7 +54,6 @@ export default function DashboardLayout({
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Usuario temporal.
-  // Después esta información llegará desde la API.
   const user = currentUser;
 
   const hasPermission = (permission) => {
@@ -119,7 +118,7 @@ export default function DashboardLayout({
     // Nota: esto solo alterna el estado visual del botón por ahora.
     // Para que el modo oscuro afecte de verdad el resto de la app,
     // falta habilitar `darkMode: "class"` en tailwind.config y agregar
-    // clases dark: en cada componente. Queda como siguiente paso.
+    // clases dark: en cada componente.
     setIsDarkMode((previousValue) => !previousValue);
   };
 
@@ -251,7 +250,7 @@ export default function DashboardLayout({
       <footer className="w-full bg-[#0E9E6B]">
         <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-center px-4">
           <p className="text-sm font-medium text-white">
-            Gestor Documental Enruta © 2026. Todos los derechos reservados.
+            Gestor Documental Enruta © 2026.
           </p>
         </div>
       </footer>

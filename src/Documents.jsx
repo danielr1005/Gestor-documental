@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, Pencil } from "lucide-react";
-import DashboardLayout from "./components/DashboardLayout";
+import Dashboardlayout from "./components/Dashboardlayout";
 
 const initialDocuments = [
   {
@@ -102,7 +102,7 @@ export default function Documents() {
   };
 
   return (
-    <DashboardLayout
+    <Dashboardlayout
       activePage="documentos"
       searchValue={search}
       onSearchChange={(event) =>
@@ -257,6 +257,6 @@ export default function Documents() {
           </tbody>
         </table>
       </div>
-    </DashboardLayout>
+    </Dashboardlayout>
   );
 }

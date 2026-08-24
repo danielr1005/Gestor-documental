@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FileSearch, Files, Users } from "lucide-react";
-import DashboardLayout from "./components/DashboardLayout";
+import Dashboardlayout from "./components/Dashboardlayout";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function Home() {
   };
 
   return (
-    <DashboardLayout
+    <Dashboardlayout
       activePage="home"
       searchValue={search}
       onSearchChange={(event) => setSearch(event.target.value)}
@@ -87,6 +87,6 @@ export default function Home() {
           </article>
         </div>
       </section>
-    </DashboardLayout>
+    </Dashboardlayout>
   );
 }
