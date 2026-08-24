@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Plus } from "lucide-react";
-import DashboardLayout from "./components/Dashboardlayout";
+import DashboardLayout from "./components/DashboardLayout";
 
 const initialResults = [
   {
@@ -182,7 +182,7 @@ export default function SearchDocuments() {
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               
               {/* Usuario */}
-              <div className="W-full sm:w-48">
+              <div className="w-full sm:w-48">
                 <button 
                   type="button"
                   onClick={() =>
@@ -215,7 +215,7 @@ export default function SearchDocuments() {
               </div>
 
               {/* Documento */}
-              <div className="W-full sm:w-48">
+              <div className="w-full sm:w-48">
                 <button
                   type="button"
                   onClick={() =>
@@ -248,7 +248,7 @@ export default function SearchDocuments() {
               </div>
 
               {/* ID */}
-              <div className="W-full sm:w-48">
+              <div className="w-full sm:w-48">
                 <button
                   type="button"
                   onClick={() =>
@@ -286,7 +286,7 @@ export default function SearchDocuments() {
               </div>
 
               {/* Fecha */}
-              <div className="W-full sm:w-48">
+              <div className="w-full sm:w-48">
                 <button
                   type="button"
                   onClick={() =>
@@ -318,7 +318,7 @@ export default function SearchDocuments() {
               </div>
 
               {/* Formato */}
-              <div className="W-full sm:w-48">
+              <div className="w-full sm:w-48">
                 <button
                   type="button"
                   onClick={() =>

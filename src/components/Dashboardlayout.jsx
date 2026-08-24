@@ -112,7 +112,7 @@ export default function DashboardLayout({
             <img
               src="/assets/logohome.png"
               alt="Logo Enruta"
-              className="h-20 w-24 object-contain"
+              className="h-20 w-30 object-contain"
             />
 
             <div className="flex items-center gap-3">
