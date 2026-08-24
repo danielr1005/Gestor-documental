@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import {
   FileSearch,
   Files,
+  Filter,
   Home,
   LogOut,
-  Menu,
+  Maximize,
+  Minimize,
+  Moon,
   Search,
-  X,
+  Sun,
 } from "lucide-react";
 
 import { currentUser } from "../mocks/currentUser";
@@ -43,10 +46,12 @@ export default function DashboardLayout({
   searchValue = "",
   onSearchChange,
   onSearchSubmit,
+  onFilterClick,
   searchPlaceholder = "Buscar archivo",
 }) {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Usuario temporal.
   // Después esta información llegará desde la API.
@@ -70,7 +75,6 @@ export default function DashboardLayout({
 
   const goTo = (route) => {
     navigate(route);
-    setMenuOpen(false);
   };
 
   const handleLogout = () => {
@@ -101,92 +105,100 @@ export default function DashboardLayout({
     navigate("/busqueda");
   };
 
-  return (
-    <div className="flex min-h-screen flex-col bg-[#f7f7f7]">
-      {/* ENCABEZADO */}
-      <header className="relative z-40 bg-[#16c90f]">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-3 lg:flex-row lg:items-center lg:justify-between">
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
 
-          {/* Logo, inicio y menú */}
-          <div className="flex items-center justify-between gap-4 lg:justify-start">
+  const toggleDarkMode = () => {
+    // Nota: esto solo alterna el estado visual del botón por ahora.
+    // Para que el modo oscuro afecte de verdad el resto de la app,
+    // falta habilitar `darkMode: "class"` en tailwind.config y agregar
+    // clases dark: en cada componente. Queda como siguiente paso.
+    setIsDarkMode((previousValue) => !previousValue);
+  };
+
+  return (
+    <div className="flex min-h-screen flex-col bg-[#f5f7f6]">
+      {/* ENCABEZADO */}
+      <header className="bg-[#0E9E6B]">
+        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-4 px-4 py-3 lg:px-8">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
             <img
               src="/assets/logohome.png"
               alt="Logo Enruta"
-              className="h-20 w-24 object-contain"
+              className="h-10 w-10 rounded-lg object-contain"
             />
-
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                title="Ir al inicio"
-                aria-label="Ir al inicio"
-                onClick={() => goTo("/home")}
-                className="rounded-md p-2 text-black transition hover:bg-black/10"
-              >
-                <Home
-                  size={28}
-                  strokeWidth={2.5}
-                />
-              </button>
-
-              <button
-                type="button"
-                title="Abrir menú"
-                aria-label="Abrir menú"
-                onClick={() =>
-                  setMenuOpen(
-                    (previousValue) =>
-                      !previousValue,
-                  )
-                }
-                className="rounded-full border-2 border-black p-2 text-black transition hover:bg-black/10"
-              >
-                {menuOpen ? (
-                  <X
-                    size={26}
-                    strokeWidth={2.5}
-                  />
-                ) : (
-                  <Menu
-                    size={26}
-                    strokeWidth={2.5}
-                  />
-                )}
-              </button>
-            </div>
+            <span className="text-base font-semibold text-white">
+              Gestor documental
+            </span>
           </div>
 
           {/* BUSCADOR */}
           {canSearch && (
             <form
               onSubmit={handleSubmit}
-              className="order-3 w-full lg:order-none lg:max-w-xl"
+              className="order-3 w-full lg:order-none lg:max-w-sm lg:flex-1"
             >
-              <div className="flex h-11 items-center rounded-full border-2 border-gray-600 bg-white px-4">
-                <Search
-                  size={22}
-                  className="shrink-0 text-gray-800"
-                />
-
+              <div className="flex h-9 items-center gap-2 rounded-lg bg-white/20 px-3">
+                <Search size={16} className="shrink-0 text-white/90" />
                 <input
                   type="search"
                   placeholder={searchPlaceholder}
                   value={searchValue}
                   onChange={onSearchChange}
-                  className="h-full w-full bg-transparent px-3 text-sm text-black outline-none placeholder:text-gray-500"
+                  className="h-full w-full bg-transparent text-sm text-white outline-none placeholder:text-white/80"
                 />
               </div>
             </form>
           )}
 
-          {/* USUARIO Y LOGOUT */}
-          <div className="flex items-center justify-between gap-4 lg:justify-end">
+          {/* ACCIONES, USUARIO Y LOGOUT */}
+          <div className="ml-auto flex items-center gap-1">
+            <button
+              type="button"
+              title="Filtrar"
+              aria-label="Filtrar"
+              onClick={onFilterClick}
+              className="rounded-lg p-2 text-white/90 transition hover:bg-white/15"
+            >
+              <Filter size={19} />
+            </button>
+
+            <button
+              type="button"
+              title={isDarkMode ? "Modo claro" : "Modo oscuro"}
+              aria-label={isDarkMode ? "Activar modo claro" : "Activar modo oscuro"}
+              onClick={toggleDarkMode}
+              className="rounded-lg p-2 text-white/90 transition hover:bg-white/15"
+            >
+              {isDarkMode ? <Sun size={19} /> : <Moon size={19} />}
+            </button>
+
+            <button
+              type="button"
+              title={isFullscreen ? "Salir de pantalla completa" : "Maximizar"}
+              aria-label={isFullscreen ? "Salir de pantalla completa" : "Maximizar vista"}
+              onClick={toggleFullscreen}
+              className="rounded-lg p-2 text-white/90 transition hover:bg-white/15"
+            >
+              {isFullscreen ? <Minimize size={19} /> : <Maximize size={19} />}
+            </button>
+
+            <div className="mx-2 h-6 w-px bg-white/30" />
+
             <div className="flex flex-col items-end">
-              <span className="max-w-52 truncate text-sm font-bold uppercase text-black">
+              <span className="max-w-52 truncate text-sm font-bold uppercase text-white">
                 {user.nombre}
               </span>
 
-              <span className="text-xs font-medium text-black/70">
+              <span className="text-xs font-medium text-white/80">
                 {user.rol}
               </span>
             </div>
@@ -196,47 +208,39 @@ export default function DashboardLayout({
               title="Cerrar sesión"
               aria-label="Cerrar sesión"
               onClick={handleLogout}
-              className="rounded-md border-2 border-black bg-white p-1.5 text-black transition hover:bg-gray-200"
+              className="rounded-lg p-2 text-white/90 transition hover:bg-white/15"
             >
-              <LogOut
-                size={27}
-                strokeWidth={2.5}
-              />
+              <LogOut size={19} />
             </button>
           </div>
         </div>
-
-        {/* MENÚ DESPLEGABLE */}
-        {menuOpen && (
-          <nav className="absolute left-4 top-full z-50 mt-2 w-72 rounded-lg border border-gray-200 bg-white p-2 text-black shadow-xl">
-            {visibleMenuItems.map((item) => {
-              const Icon = item.icon;
-
-              const isActive =
-                activePage === item.page;
-
-              return (
-                <button
-                  key={item.route}
-                  type="button"
-                  onClick={() =>
-                    goTo(item.route)
-                  }
-                  className={`flex w-full items-center gap-3 rounded-md px-4 py-3 text-left text-sm font-semibold transition ${
-                    isActive
-                      ? "bg-green-100 hover:bg-green-200"
-                      : "hover:bg-gray-100"
-                  }`}
-                >
-                  <Icon size={20} />
-
-                  {item.name}
-                </button>
-              );
-            })}
-          </nav>
-        )}
       </header>
+
+      {/* NAVEGACIÓN */}
+      <nav className="border-b border-gray-200 bg-white">
+        <div className="mx-auto flex w-full max-w-7xl gap-1 px-4 py-2 lg:px-8">
+          {visibleMenuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activePage === item.page;
+
+            return (
+              <button
+                key={item.route}
+                type="button"
+                onClick={() => goTo(item.route)}
+                className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  isActive
+                    ? "bg-[#E1F7EC] text-[#0E7A52]"
+                    : "text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                <Icon size={16} />
+                {item.name}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
 
       {/* CONTENIDO */}
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-10 md:px-8">
@@ -244,10 +248,10 @@ export default function DashboardLayout({
       </main>
 
       {/* FOOTER */}
-      <footer className="h-16 w-full bg-[#16c90f]">
-        <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-center px-4">
-          <p className="text-sm font-semibold text-black">
-            Gestor Documental Enruta - TI
+      <footer className="w-full bg-[#0E9E6B]">
+        <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-center px-4">
+          <p className="text-sm font-medium text-white">
+            Gestor Documental Enruta © 2026. Todos los derechos reservados.
           </p>
         </div>
       </footer>
