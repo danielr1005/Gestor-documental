@@ -96,7 +96,7 @@ export default function Login() {
           </div>
 
           <img
-            src="/assets/mascota.png"
+            src="/assets/Mascotav2.png"
             alt="Mascota Enruta"
             className="h-auto w-52 object-contain md:w-72 lg:w-80"
           />
@@ -122,7 +122,7 @@ export default function Login() {
                 id="correo"
                 name="correo"
                 type="email"
-                placeholder="ej: pepito.perez@enruta.gov.co"
+                placeholder="Digita el correo institucional"
                 value={formData.correo}
                 onChange={handleChange}
                 onPaste={bloquearPegado}

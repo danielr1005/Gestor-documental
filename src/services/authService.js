@@ -9,25 +9,54 @@ export async function loginUser(credentials) {
   // PRUEBA SIN BACKEND
   if (USE_MOCK_AUTH) {
     await new Promise((resolve) => setTimeout(resolve, 500));
+    
 
-    return {
-      token: "token-prueba",
-      usuario: {
-        id: 1,
-        nombre: "Usuario de prueba",
-        correo: credentials.correo,
-        rol: "ADMINISTRADOR",
-        permisos: [
-          "BUSCAR_DOCUMENTOS",
-          "VER_DOCUMENTOS",
-          "DESCARGAR_DOCUMENTOS",
-          "CARGAR_DOCUMENTOS",
-          "GESTIONAR_USUARIOS",
-          "GESTIONAR_PERMISOS",
-          "CONSULTAR_LOGS",
-        ],
-      },
+  if (USE_MOCK_AUTH) {
+  await new Promise((resolve) =>
+    setTimeout(resolve, 500),
+  );
+
+  const storedUser =
+    sessionStorage.getItem("usuarioRegistrado");
+
+  let usuario;
+
+  if (storedUser) {
+    const registeredUser = JSON.parse(storedUser);
+
+    if (
+      registeredUser.correo.toLowerCase() ===
+      credentials.correo.toLowerCase()
+    ) {
+      usuario = registeredUser;
+    }
+  }
+
+  // Si no viene del registro, permite seguir haciendo
+  // pruebas con un usuario genérico.
+  if (!usuario) {
+    usuario = {
+      id: 1,
+      nombre: "Usuario de prueba",
+      correo: credentials.correo,
+      rol: "ADMINISTRADOR",
+      permisos: [
+        "BUSCAR_DOCUMENTOS",
+        "VER_DOCUMENTOS",
+        "DESCARGAR_DOCUMENTOS",
+        "CARGAR_DOCUMENTOS",
+        "GESTIONAR_USUARIOS",
+        "GESTIONAR_PERMISOS",
+        "CONSULTAR_LOGS",
+      ],
     };
+  }
+
+  return {
+    token: "token-prueba",
+    usuario,
+  };
+}
   }
 
   // API REAL

@@ -37,6 +37,23 @@ export default function Register() {
     }
 
     console.log("Datos enviados:", formData);
+  
+  const usuarioRegistrado = {
+  id: Date.now(),
+  nombre: `${formData.nombres} ${formData.apellidos}`,
+  correo: formData.correo,
+  rol: "USUARIO",
+  permisos: [
+    "BUSCAR_DOCUMENTOS",
+    "VER_DOCUMENTOS",
+    "DESCARGAR_DOCUMENTOS",
+  ],
+};
+
+sessionStorage.setItem(
+  "usuarioRegistrado",
+  JSON.stringify(usuarioRegistrado),
+);
 
     navigate("/login");
   };
@@ -159,7 +176,7 @@ export default function Register() {
                 id="correo"
                 name="correo"
                 type="email"
-                placeholder="ej: pepito.perez@enruta.gov.co"
+                placeholder="Digite el correo Institucional"
                 value={formData.correo}
                 onChange={handleChange}
                 className={inputClasses}
@@ -208,26 +225,51 @@ export default function Register() {
                 </option>
               </select>
             </div>
-
-            <div className="mb-3 flex flex-col">
+             <div className="mb-3 flex flex-col">
               <label
-                htmlFor="cargo"
+                htmlFor="area"
                 className="mb-1 text-sm font-bold text-[#202020]"
               >
-                Cargo institucional
+                Cargo 
               </label>
 
-              <input
+              <select
                 id="cargo"
                 name="cargo"
-                type="text"
-                placeholder="Cargo en la entidad"
                 value={formData.cargo}
                 onChange={handleChange}
                 className={inputClasses}
                 required
-              />
+              >
+                <option value="" disabled hidden>
+                  Seleccione el cargo
+                </option>
+
+                <option value="Aprendiz">
+                  Aprendiz
+                </option>
+
+                <option value="Contratista">
+                  Contratista
+                </option>
+
+                <option value="Director">
+                  Director
+                </option>
+
+                <option value="Profesional universitario">
+                  Profesional universitario
+                </option>
+
+                <option value="Tecnico">
+                 Tecnico
+                </option>
+              </select>
             </div>
+
+           
+
+           
 
             <div className="mb-3 flex flex-col">
               <label

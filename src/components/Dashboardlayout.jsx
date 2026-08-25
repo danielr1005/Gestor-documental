@@ -50,7 +50,22 @@ export default function DashboardLayout({
 
   // Usuario temporal.
   // Después esta información llegará desde la API.
-  const user = currentUser;
+const getSessionUser = () => {
+  try {
+    const storedUser =
+      sessionStorage.getItem("usuario");
+
+    if (!storedUser) {
+      return currentUser;
+    }
+
+    return JSON.parse(storedUser);
+  } catch {
+    return currentUser;
+  }
+};
+
+const user = getSessionUser();
 
   const hasPermission = (permission) => {
     if (!permission) {
@@ -80,6 +95,8 @@ export default function DashboardLayout({
       - eliminar datos del usuario
       - cerrar sesión
     */
+     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("usuario");
 
     navigate("/login", {
       replace: true,
@@ -183,8 +200,8 @@ export default function DashboardLayout({
           <div className="flex items-center justify-between gap-4 lg:justify-end">
             <div className="flex flex-col items-end">
               <span className="max-w-52 truncate text-sm font-bold uppercase text-black">
-                {user.nombre}
-              </span>
+            {user.nombre}
+            </span>
 
               <span className="text-xs font-medium text-black/70">
                 {user.rol}
